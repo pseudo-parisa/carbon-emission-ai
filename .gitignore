@@ -12,6 +12,7 @@ venv/
 
 # Node
 frontend/node_modules/
+node_modules/
 
 # Build folders
 frontend/dist/
