@@ -1,5 +1,7 @@
 import api from "../services/api";
 import { useState } from "react";
+import FormInput from "../components/FormInput";
+import FormSelect from "../components/FormSelect";
 
 export default function Calculator() {
     const [carDistance, setCarDistance] = useState("");
@@ -27,34 +29,54 @@ export default function Calculator() {
             <h1>Carbon Footprint Calculator</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                <label>Car Distance (km/year)</label>
-                    <input type="number" value={carDistance} onChange={(e) => setCarDistance(Number(e.target.value))}/>
+                    <FormInput
+                        label="Car Distance (km/year)"
+                        type="number"
+                        value={carDistance}
+                        onChange={(e) => setCarDistance(Number(e.target.value))}
+                    />
                 </div>
                 <div>
-                    <label>Monthly Electricity (kWh)</label>
-                    <input type="number" value={electricityUsage} onChange={(e) => setElectricityUsage(Number(e.target.value))}/>
+                    <FormInput
+                        label="Monthly Electricity (kWh)"
+                        type="number"
+                        value={electricityUsage}
+                        onChange={(e) => setElectricityUsage(Number(e.target.value))}
+                    />
                 </div>
                 <div>
-                    <label>Flights Per Year</label>
-                    <input type="number" value={flightsPerYear} onChange={(e) => setFlightsPerYear(Number(e.target.value))}/>
+                    <FormInput
+                        label="Flights Per Year"
+                        type="number"
+                        value={flightsPerYear}
+                        onChange={(e) => setFlightsPerYear(Number(e.target.value))}
+                    />
                 </div>
                 {/* Dietary Habits */}
                 <div>
-                    <label>Dietary Habits</label>
-                    <select value={dietaryHabits} onChange={(e) => setDietaryHabits(e.target.value)}>
-                        <option value="vegetarian">Vegetarian</option>
-                        <option value="mixed">Mixed</option>
-                        <option value="heavyMeat">Heavy Meat</option>
-                    </select>
+                    <FormSelect
+                        label="Dietary Habits"
+                        value={dietaryHabits}
+                        onChange={(e) => setDietaryHabits(e.target.value)}
+                        options={[
+                            { value: "vegetarian", label: "Vegetarian" },
+                            { value: "mixed", label: "Mixed" },
+                            { value: "heavyMeat", label: "Heavy Meat" }
+                        ]}
+                    />
                 </div>
                 {/* Shopping Habits */}
                 <div>
-                    <label>Shopping Habits</label>
-                    <select value={shoppingHabits} onChange={(e) => setShoppingHabits(e.target.value)}>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
+                    <FormSelect
+                        label="Shopping Habits"
+                        value={shoppingHabits}
+                        onChange={(e) => setShoppingHabits(e.target.value)}
+                        options={[
+                            { value: "low", label: "Low" },
+                            { value: "medium", label: "Medium" },
+                            { value: "high", label: "High" }
+                        ]}
+                    />
                 </div>
                 <button type="submit">Calculate</button>
             </form>
