@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import FormSelect from "../components/FormSelect";
+import "../App.css";
 
 export default function Calculator() {
     const [carDistance, setCarDistance] = useState("");
@@ -24,14 +25,14 @@ export default function Calculator() {
     });
 
     navigate("/results", { state: { result: response.data } });
-    
+
     }
 
     return (
-        <div>
+        <div className="calculator-container">
             <h1>Carbon Footprint Calculator</h1>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-group">
                     <FormInput
                         label="Car Distance (km/year)"
                         type="number"
@@ -39,7 +40,7 @@ export default function Calculator() {
                         onChange={(e) => setCarDistance(Number(e.target.value))}
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <FormInput
                         label="Monthly Electricity (kWh)"
                         type="number"
@@ -47,7 +48,7 @@ export default function Calculator() {
                         onChange={(e) => setElectricityUsage(Number(e.target.value))}
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <FormInput
                         label="Flights Per Year"
                         type="number"
@@ -56,7 +57,7 @@ export default function Calculator() {
                     />
                 </div>
                 {/* Dietary Habits */}
-                <div>
+                <div className="form-group">
                     <FormSelect
                         label="Dietary Habits"
                         value={dietaryHabits}
@@ -69,7 +70,7 @@ export default function Calculator() {
                     />
                 </div>
                 {/* Shopping Habits */}
-                <div>
+                <div className="form-group">
                     <FormSelect
                         label="Shopping Habits"
                         value={shoppingHabits}
