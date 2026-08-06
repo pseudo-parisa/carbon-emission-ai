@@ -1,10 +1,12 @@
 import api from "../services/api";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import FormSelect from "../components/FormSelect";
 
 export default function Calculator() {
     const [carDistance, setCarDistance] = useState("");
+    const navigate = useNavigate();
     const [electricityUsage, setElectricityUsage] = useState("");
     const [flightsPerYear, setFlightsPerYear] = useState("");
     const [dietaryHabits, setDietaryHabits] = useState("mixed");
@@ -21,7 +23,8 @@ export default function Calculator() {
         shoppingHabits: shoppingHabits,
     });
 
-    console.log(response.data);
+    navigate("/results", { state: { result: response.data } });
+    
     }
 
     return (
