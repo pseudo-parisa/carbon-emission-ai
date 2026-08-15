@@ -1,12 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import Literal
 
 
 class CarbonRequest(BaseModel):
-    carDistance: float
-    electricityUsage: float
-    flightsPerYear: int
-    dietaryHabits: str
-    shoppingHabits: str
+    carDistance: float = Field(..., ge=0, le=200000)
+    electricityUsage: float = Field(..., ge=0, le=10000)
+    flightsPerYear: int = Field(..., ge=0, le=365)
+    dietaryHabits: Literal["vegetarian", "mixed", "heavyMeat"] 
+    shoppingHabits: Literal["low", "medium", "high"] 
 
 
 class CarbonResponse(BaseModel):

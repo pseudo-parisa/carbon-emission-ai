@@ -260,3 +260,15 @@ button:hover{
     color: #d1d5db;
     font-size: 15px;
 }
+
+/* ---------- Error Message ---------- */
+
+.error-message {
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(220, 38, 38, 0.15);
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    color: #fecaca;
+    font-size: 14px;
+}

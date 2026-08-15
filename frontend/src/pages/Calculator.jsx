@@ -13,8 +13,28 @@ export default function Calculator() {
     const [dietaryHabits, setDietaryHabits] = useState("mixed");
     const [shoppingHabits, setShoppingHabits] = useState("medium");
 
+    const [error, setError] = useState("");
+
    async function handleSubmit(event){
+
     event.preventDefault();
+
+    setError("");
+
+    if (carDistance < 0 || carDistance > 200000) {
+        setError("Please enter a valid annual car distance.");
+        return;
+    }
+
+    if (electricityUsage < 0 || electricityUsage > 10000) {
+        setError("Please enter a valid monthly electricity usage.");
+        return;
+    }
+
+    if (flightsPerYear < 0 || flightsPerYear > 365) {
+        setError("Please enter a valid number of flights.");
+        return;
+    }
 
     const response = await api.post("/calculate", {
         carDistance: carDistance,
@@ -82,6 +102,12 @@ export default function Calculator() {
                         ]}
                     />
                 </div>
+                {error && (
+                    <p className="error-message">
+                        {error}
+                    </p>
+                )}
+
                 <button type="submit">Calculate</button>
             </form>
         </div>
