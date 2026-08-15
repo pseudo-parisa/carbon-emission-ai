@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import EmissionChart from "../components/EmissionChart";
 import "../App.css";
 
 export default function Results() {
@@ -20,6 +21,7 @@ export default function Results() {
                     </div>
                     <h2>Total Carbon Footprint</h2>
                     <p className="total">{result.total} kg CO₂</p>
+                    <EmissionChart results={result} />
                 </div>
             )}
         </>

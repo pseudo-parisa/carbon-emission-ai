@@ -172,3 +172,20 @@ button:hover{
 
   margin:20px 0;
 }
+
+/* ---------- Emission Chart ---------- */
+
+.chart-container {
+    margin-top: 30px;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 18px;
+}
+
+.chart-container h2 {
+    margin-top: 0;
+}
