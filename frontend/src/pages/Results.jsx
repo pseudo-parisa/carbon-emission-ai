@@ -22,7 +22,7 @@ export default function Results() {
                     </div>
                     <div className="total-section">
                         <p className="total-label">Your Annual Carbon Footprint</p>
-                        <p className="total">{result.total}</p>
+                        <p className="total">{result.total.toFixed(2)}</p>
                         <p className="total-unit">kg CO₂ / year</p>
                     </div>
                     <h2>Where Your Emissions Come From</h2>

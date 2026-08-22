@@ -47,12 +47,22 @@ export default function EmissionChart({ results }) {
                         nameKey="name"
                         cx="50%"
                         cy="50%"
-                        outerRadius={110}
-                        label
+                        outerRadius={120}
+                        innerRadius={45}
+                        label={({ name, value }) => `${name}: ${Number(value).toFixed(1)}`}
                     >
 
                         {data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} />
+                            <Cell
+                                key={`cell-${index}`}
+                                fill={[
+                                    "#22c55e",
+                                    "#16a34a",
+                                    "#15803d",
+                                    "#0f766e",
+                                    "#84cc16"
+                                ][index % 5]}
+                            />
                         ))}
 
                     </Pie>

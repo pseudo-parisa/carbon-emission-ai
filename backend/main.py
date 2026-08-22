@@ -53,5 +53,5 @@ def calculate(data: CarbonRequest):
         flights=flights,
         diet=diet,
         shopping=shopping,
-        total=total
+        total= total
     )
