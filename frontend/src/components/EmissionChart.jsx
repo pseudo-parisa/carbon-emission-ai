@@ -8,7 +8,6 @@ import {
 } from "recharts";
 
 export default function EmissionChart({ results }) {
-
     const data = [
         {
             name: "Transport",
@@ -34,24 +33,23 @@ export default function EmissionChart({ results }) {
 
     return (
         <div className="chart-container">
-
             <h2>Emission Breakdown</h2>
 
-            <ResponsiveContainer width="100%" height={350}>
-
+            <ResponsiveContainer width="100%" height={400}>
                 <PieChart>
-
                     <Pie
                         data={data}
                         dataKey="value"
                         nameKey="name"
                         cx="50%"
-                        cy="50%"
-                        outerRadius={120}
+                        cy="45%"
+                        outerRadius={100}
                         innerRadius={45}
-                        label={({ name, value }) => `${name}: ${Number(value).toFixed(1)}`}
+                        label={({ name, value }) =>
+                            `${name}: ${Number(value).toFixed(1)}`
+                        }
+                        labelLine={true}
                     >
-
                         {data.map((entry, index) => (
                             <Cell
                                 key={`cell-${index}`}
@@ -64,17 +62,16 @@ export default function EmissionChart({ results }) {
                                 ][index % 5]}
                             />
                         ))}
-
                     </Pie>
 
                     <Tooltip />
 
-                    <Legend />
-
+                    <Legend
+                        verticalAlign="bottom"
+                        height={36}
+                    />
                 </PieChart>
-
             </ResponsiveContainer>
-
         </div>
     );
 }

@@ -15,37 +15,46 @@ export default function Calculator() {
 
     const [error, setError] = useState("");
 
-   async function handleSubmit(event){
+    async function handleSubmit(event) {
+        event.preventDefault();
+        setError("");
 
-    event.preventDefault();
+        if (carDistance === "" || electricityUsage === "" || flightsPerYear === "") {
+            setError("Please complete all required fields.");
+            return;
+        }
 
-    setError("");
+        if (carDistance < 0 || carDistance > 200000) {
+            setError("Please enter a valid annual car distance.");
+            return;
+        }
 
-    if (carDistance < 0 || carDistance > 200000) {
-        setError("Please enter a valid annual car distance.");
-        return;
-    }
+        if (electricityUsage < 0 || electricityUsage > 10000) {
+            setError("Please enter a valid monthly electricity usage.");
+            return;
+        }
 
-    if (electricityUsage < 0 || electricityUsage > 10000) {
-        setError("Please enter a valid monthly electricity usage.");
-        return;
-    }
+        if (flightsPerYear < 0 || flightsPerYear > 365) {
+            setError("Please enter a valid number of flights.");
+            return;
+        }
 
-    if (flightsPerYear < 0 || flightsPerYear > 365) {
-        setError("Please enter a valid number of flights.");
-        return;
-    }
+        try {
+            const response = await api.post("/calculate", {
+                carDistance: carDistance,
+                electricityUsage: electricityUsage,
+                flightsPerYear: flightsPerYear,
+                dietaryHabits: dietaryHabits,
+                shoppingHabits: shoppingHabits,
+            });
 
-    const response = await api.post("/calculate", {
-        carDistance: carDistance,
-        electricityUsage: electricityUsage,
-        flightsPerYear: flightsPerYear,
-        dietaryHabits: dietaryHabits,
-        shoppingHabits: shoppingHabits,
-    });
+            navigate("/results", { state: { result: response.data } });
 
-    navigate("/results", { state: { result: response.data } });
-
+        } catch (error) {
+            setError(
+                "Unable to connect to the calculation server. Please make sure the backend is running and try again."
+            );
+        }
     }
 
     return (
@@ -57,7 +66,7 @@ export default function Calculator() {
                         label="Car Distance (km/year)"
                         type="number"
                         value={carDistance}
-                        onChange={(e) => setCarDistance(Number(e.target.value))}
+                        onChange={(e) => setCarDistance(e.target.value)}
                     />
                 </div>
                 <div className="form-group">
@@ -65,7 +74,7 @@ export default function Calculator() {
                         label="Monthly Electricity (kWh)"
                         type="number"
                         value={electricityUsage}
-                        onChange={(e) => setElectricityUsage(Number(e.target.value))}
+                        onChange={(e) => setElectricityUsage(e.target.value)}
                     />
                 </div>
                 <div className="form-group">
@@ -73,7 +82,7 @@ export default function Calculator() {
                         label="Flights Per Year"
                         type="number"
                         value={flightsPerYear}
-                        onChange={(e) => setFlightsPerYear(Number(e.target.value))}
+                        onChange={(e) => setFlightsPerYear(e.target.value)}
                     />
                 </div>
                 {/* Dietary Habits */}

@@ -12,13 +12,13 @@ export default function Results() {
             { !result ? (
                 <p>No results available.</p>
             ) : (
-                <div className="results-container">
+                <div className="results-page">
                     <div className="emission-grid">
-                        <EmissionCard icon="🚗" title="Transport" value={result.transport} />
-                        <EmissionCard icon="💡" title="Electricity" value={result.electricity} />
-                        <EmissionCard icon="✈️" title="Flights" value={result.flights} />
-                        <EmissionCard icon="🥗" title="Diet" value={result.diet} />
-                        <EmissionCard icon="🛍️" title="Shopping" value={result.shopping} />
+                        <EmissionCard icon="🚗" title="Transport" value={result.transport.toFixed(2)} />
+                        <EmissionCard icon="💡" title="Electricity" value={result.electricity.toFixed(2)} />
+                        <EmissionCard icon="✈️" title="Flights" value={result.flights.toFixed(2)} />
+                        <EmissionCard icon="🥗" title="Diet" value={result.diet.toFixed(2)} />
+                        <EmissionCard icon="🛍️" title="Shopping" value={result.shopping.toFixed(2)} />
                     </div>
                     <div className="total-section">
                         <p className="total-label">Your Annual Carbon Footprint</p>
