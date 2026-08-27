@@ -59,7 +59,8 @@ carbon-emission-ai/
 │   │   ├── services/
 │   │   ├── App.jsx
 │   │   ├── App.css
-│   │   └── index.css
+│   │   ├── index.css
+|   |   └── main.jsx
 │   ├── package.json
 │   └── ...
 ├── .gitignore
@@ -224,7 +225,7 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 
 ### Phase 2 — Polish 🔄
 
-- [ ] Tailwind CSS
+- [x] Tailwind CSS
 - [ ] Improved mobile responsiveness
 - [ ] Responsive charts
 - [ ] Navbar refinements
