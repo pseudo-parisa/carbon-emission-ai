@@ -25,7 +25,6 @@ export default function Results() {
                         <p className="total">{result.total.toFixed(2)}</p>
                         <p className="total-unit">kg CO₂ / year</p>
                     </div>
-                    <h2>Where Your Emissions Come From</h2>
 
                     <p className="chart-description">
                         Here's how your estimated carbon footprint is divided across different areas.

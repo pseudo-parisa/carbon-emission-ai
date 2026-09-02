@@ -137,9 +137,9 @@ select {
 /* ---------- Glass Card ---------- */
 
 .calculator-container{
-  width: 540px;
-  max-width: 90%;
-  padding: 35px;
+  width: min(560px, 90%);
+  margin: 60px auto;
+  padding: 40px;
   background: rgba(255,255,255,0.12);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -151,14 +151,10 @@ select {
 
 .results-container,
 .home-container {
-    width: 200%;
-    max-width: 2000px;
-    min-height: 50vh;
-    margin: 0 auto;
+    width: 100%;
     box-sizing: border-box;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 10px 5px;
+
 }
 
 /* ---------- Typography ---------- */
@@ -188,7 +184,7 @@ p{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 35px;
+    padding: 18px 40px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(15px);
     position: sticky;
@@ -237,6 +233,13 @@ p{
     color: #4ade80;
 }
 
+/* ---------- Calculator ---------- */
+
+.calculator-container h1 {
+  margin-bottom: 35px;
+  color: #f3f4f6;
+}
+
 /* ---------- Form ---------- */
 
 .form-group{
@@ -254,15 +257,17 @@ label{
 
 input,
 select{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.2);
-  background:rgba(255,255,255,.08);
-  color:white;
-  font-size:15px;
-  box-sizing:border-box;
-  transition:.25s;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    color: #f3f4f6;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
 
 select option {
@@ -271,14 +276,14 @@ select option {
 }
 
 input::placeholder{
-  color:#d3d3d3; 
+    color:#d3d3d3; 
 }
 
 input:focus,
 select:focus{
-  outline:none;
-  border-color:#4ade80;
-  background:rgba(255,255,255,.13);
+    outline:none;
+    border-color:#4ade80;
+    background:rgba(255,255,255,.13);
 }
 
 /* ---------- Button ---------- */
@@ -326,13 +331,6 @@ button:hover{
   box-sizing: border-box;
 }
 
-.results-page > h2 {
-    margin-top: 45px;
-    margin-bottom: 10px;
-    color: white;
-    text-align: center;
-}
-
 .results-header {
   text-align: center;
   margin: 45px 0 35px;
@@ -349,21 +347,23 @@ button:hover{
 /* ---------- Emission Chart ---------- */
 
 .chart-container {
-    width: 100%;
-    max-width: 650px;
-    margin: 30px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 18px;
-    text-align: center;
-    box-sizing: border-box;
-    overflow: visible;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 30px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  text-align: center;
+  overflow: visible;
 }
 
 .chart-container h2 {
     margin-top: 0;
     margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 700;
     color: white;
 }
 
@@ -377,22 +377,19 @@ button:hover{
 
 .emission-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 15px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .emission-card {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 18px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
-    text-align: left;
-    transition: transform 0.2s ease,
-                background 0.2s ease;
+  padding: 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  transition: transform 0.2s ease;
 }
 
 .emission-card:hover {
@@ -419,18 +416,22 @@ button:hover{
 /* ---------- Total Section ---------- */
 
 .total-section {
-    text-align: center;
-    margin: 40px 0;
+  margin-bottom: 10px;
+  padding: 35px;
+  text-align: center;
 }
 
 .total-section h2 {
   margin-bottom: 10px;
   color: white;
+  font-size: 36px;
+  font-weight: 700;
 }
 
 .total-label {
     color: #d1d5db;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .total {
@@ -444,6 +445,8 @@ button:hover{
 .total-unit {
   color: rgba(255, 255, 255, 0.7);
   margin-top: 5px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .total-emissions {
@@ -475,10 +478,10 @@ button:hover{
 /* ---------- Hero Section ---------- */
 
 .hero-section {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 110px 30px 100px;
-    text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 70px 60px;
+  text-align: center;
 }
 
 .hero-label {
