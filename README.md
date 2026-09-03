@@ -226,9 +226,9 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 ### Phase 2 — Polish 🔄
 
 - [x] Tailwind CSS
-- [ ] Improved mobile responsiveness
+- [x] Improved mobile responsiveness
 - [ ] Responsive charts
-- [ ] Navbar refinements
+- [x] Navbar refinements
 - [ ] Cleaner component architecture
 - [ ] Animations and transitions
 - [ ] Additional UI polish

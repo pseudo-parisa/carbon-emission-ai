@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+
 import {
     PieChart,
     Pie,
@@ -8,6 +10,20 @@ import {
 } from "recharts";
 
 export default function EmissionChart({ results }) {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
+
+    useEffect(() => {
+        function handleResize() {
+            setIsMobile(window.innerWidth <= 700);
+        }
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     const data = [
         {
             name: "Transport",
@@ -35,7 +51,7 @@ export default function EmissionChart({ results }) {
         <div className="chart-container">
             <h2>Emission Breakdown</h2>
 
-            <ResponsiveContainer width="100%" height={400}>
+            <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                     <Pie
                         data={data}
@@ -43,12 +59,10 @@ export default function EmissionChart({ results }) {
                         nameKey="name"
                         cx="50%"
                         cy="45%"
-                        outerRadius={100}
+                        outerRadius={90}
                         innerRadius={45}
-                        label={({ name, value }) =>
-                            `${name}: ${Number(value).toFixed(1)}`
-                        }
-                        labelLine={true}
+                        label={!isMobile ? ({ name, value }) => `${name}: ${Number(value).toFixed(1)}` : false}
+                        labelLine={!isMobile}
                     >
                         {data.map((entry, index) => (
                             <Cell
