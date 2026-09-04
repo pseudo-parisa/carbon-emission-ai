@@ -58,7 +58,7 @@ export default function Calculator() {
     }
 
     return (
-        <div className="calculator-container">
+        <div className="calculator-container page-enter">
             <h1>Carbon Footprint Calculator</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">

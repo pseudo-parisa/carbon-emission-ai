@@ -4,7 +4,7 @@ export default function Home() {
     const navigate = useNavigate();
 
     return (
-        <div className="home-container">
+        <div className="home-container page-enter">
 
             <section className="hero-section">
 

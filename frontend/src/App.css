@@ -21,16 +21,16 @@ select {
 /* ---------- Glass Card ---------- */
 
 .calculator-container{
-  width: min(560px, 90%);
-  margin: 60px auto;
-  padding: 40px;
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0,0,0,.35);
-  color: white;
+    width: min(560px, 90%);
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    color: white;
 }
 
 .results-container,
@@ -44,19 +44,19 @@ select {
 /* ---------- Typography ---------- */
 
 h1{
-  margin-top:0;
-  margin-bottom:30px;
-  font-size:38px;
-  font-weight:700;
-  color:white;
+    margin-top:0;
+    margin-bottom:30px;
+    font-size:38px;
+    font-weight:700;
+    color:white;
 }
 
 h2{
-  color:white;
+    color:white;
 }
 
 p{
-  color:#d9d9d9;
+    color:#d9d9d9;
 }
 
 /* --------- Navbar ---------- */
@@ -120,21 +120,21 @@ p{
 /* ---------- Calculator ---------- */
 
 .calculator-container h1 {
-  margin-bottom: 35px;
-  color: #f3f4f6;
+    margin-bottom: 35px;
+    color: #f3f4f6;
 }
 
 /* ---------- Form ---------- */
 
 .form-group{
-  margin-bottom:22px;
+    margin-bottom:22px;
 }
 
 label{
-  display:block;
-  margin-bottom:8px;
-  font-weight:600;
-  color:white;
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:white;
 }
 
 /* ---------- Inputs ---------- */
@@ -173,74 +173,74 @@ select:focus{
 /* ---------- Button ---------- */
 
 button{
-  width:100%;
-  padding:15px;
-  margin-top:15px;
-  border:none;
-  border-radius:14px;
-  background:#22c55e;
-  color:white;
-  font-size:17px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.25s;
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:none;
+    border-radius:14px;
+    background:#22c55e;
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
 }
 
 button:hover{
-  background:#16a34a;
-  transform:translateY(-2px);
+    background:#16a34a;
+    transform:translateY(-2px);
 }
 
 /* ---------- Results ---------- */
 
 .result-box{
-  margin-top:20px;
-  padding:15px;
-  border-radius:15px;
-  background:rgba(255,255,255,.08);
+    margin-top:20px;
+    padding:15px;
+    border-radius:15px;
+    background:rgba(255,255,255,.08);
 }
 
 .total{
-  font-size:42px;
-  font-weight:700;
-  color:#4ade80;
-  margin:20px 0;
+    font-size:42px;
+    font-weight:700;
+    color:#4ade80;
+    margin:20px 0;
 }
 
 .results-page {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 24px 80px;
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    box-sizing: border-box;
 }
 
 .results-header {
-  text-align: center;
-  margin: 45px 0 35px;
+    text-align: center;
+    margin: 45px 0 35px;
 }
 
 .results-header h1 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .results-header p {
-  color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* ---------- Emission Chart ---------- */
 
 .chart-container {
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 30px;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 22px;
-  text-align: center;
-  overflow: visible;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    text-align: center;
+    overflow: visible;
 }
 
 .chart-container h2 {
@@ -267,13 +267,13 @@ button:hover{
 }
 
 .emission-card {
-  padding: 24px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  transition: transform 0.2s ease;
+    padding: 24px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    transition: transform 0.2s ease;
 }
 
 .emission-card:hover {
@@ -300,16 +300,16 @@ button:hover{
 /* ---------- Total Section ---------- */
 
 .total-section {
-  margin-bottom: 10px;
-  padding: 35px;
-  text-align: center;
+    margin-bottom: 10px;
+    padding: 35px;
+    text-align: center;
 }
 
 .total-section h2 {
-  margin-bottom: 10px;
-  color: white;
-  font-size: 36px;
-  font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
 }
 
 .total-label {
@@ -327,17 +327,17 @@ button:hover{
 }
 
 .total-unit {
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 5px;
-  font-size: 18px;
-  font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .total-emissions {
-  font-size: 48px;
-  font-weight: 700;
-  color: #22c55e;
-  margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    color: #22c55e;
+    margin: 0;
 }
 
 /* ---------- Error Message ---------- */
@@ -362,10 +362,10 @@ button:hover{
 /* ---------- Hero Section ---------- */
 
 .hero-section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 70px 60px;
-  text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 60px;
+    text-align: center;
 }
 
 .hero-label {
@@ -416,6 +416,10 @@ button:hover{
 .hero-button:hover {
     background: #16a34a;
     transform: translateY(-2px);
+}
+
+.hero-button:active {
+    transform: translateY(0);
 }
 
 /* --------- How It Works Section ---------- */
@@ -509,4 +513,22 @@ button:hover{
     margin: 0 auto;
     color: #b8c4c0;
     line-height: 1.7;
+}
+
+/* ---------- Page Transition Animation ---------- */
+
+.page-enter {
+    animation: pageFadeIn 0.5s ease-out;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

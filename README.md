@@ -27,7 +27,7 @@ An AI-powered web application that calculates a user's carbon footprint and prov
 - React
 - React Router
 - Vite
-- Tailwind CSS
+- Custom CSS
 - Axios
 - Recharts
 
@@ -225,13 +225,13 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 
 ### Phase 2 — Polish 🔄
 
-- [x] Tailwind CSS
 - [x] Improved mobile responsiveness
-- [ ] Responsive charts
+- [x] Responsive charts
 - [x] Navbar refinements
-- [ ] Cleaner component architecture
-- [ ] Animations and transitions
-- [ ] Additional UI polish
+- [x] Cleaner component architecture
+- [x] Animations and transitions
+- [x] Accesiibility 
+- [x] Additional UI polish
 
 ### Phase 3 — AI 🤖
 
@@ -255,6 +255,10 @@ Carbon Compass is designed to demonstrate a complete full-stack workflow using R
 **Phase 1 — Core Application: COMPLETE ✅**
 
 The core application is functional. Mobile responsiveness and other visual refinements are intentionally carried into Phase 2.
+
+**Phase 2 — Polish: COMPLETE ✅**
+
+The application has been refined with improved desktop UI, responsive layouts, mobile optimization, animations and transitions, and overall visual improvements.
 
 ---
 

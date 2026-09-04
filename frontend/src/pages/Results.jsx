@@ -12,7 +12,7 @@ export default function Results() {
             { !result ? (
                 <p>No results available.</p>
             ) : (
-                <div className="results-page">
+                <div className="results-page page-enter">
                     <div className="emission-grid">
                         <EmissionCard icon="🚗" title="Transport" value={result.transport.toFixed(2)} />
                         <EmissionCard icon="💡" title="Electricity" value={result.electricity.toFixed(2)} />
@@ -32,7 +32,6 @@ export default function Results() {
 
                     <EmissionChart results={result} />
                 </div>
-                
             )}
         </>
     );
