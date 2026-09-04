@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from schemas import CarbonRequest, CarbonResponse
 from fastapi.middleware.cors import CORSMiddleware
+from ai_service import test_gemini
 
 app = FastAPI()
 app.add_middleware(
@@ -55,3 +56,8 @@ def calculate(data: CarbonRequest):
         shopping=shopping,
         total= total
     )
+
+@app.get("/ai-test")
+def ai_test():
+    return {"message": test_gemini()}
+
