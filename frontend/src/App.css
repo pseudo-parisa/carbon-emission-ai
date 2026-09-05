@@ -515,20 +515,27 @@ button:hover{
     line-height: 1.7;
 }
 
-/* ---------- Page Transition Animation ---------- */
+/* ---------- AI Recommendations ---------- */
 
-.page-enter {
-    animation: pageFadeIn 0.5s ease-out;
+.ai-recommendations {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
 }
 
-@keyframes pageFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
+.ai-recommendations h2 {
+    margin-bottom: 1rem;
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.ai-response {
+    white-space: pre-line;
+    line-height: 1.7;
+    color: #F3F4F6;
+}
+
+.ai-recommendations p {
+    margin: 0;
 }

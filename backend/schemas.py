@@ -18,6 +18,14 @@ class CarbonResponse(BaseModel):
     shopping: float
     total: float
 
+class AIRecommendationRequest(BaseModel):
+    transport: float
+    electricity: float
+    flights: float
+    diet: float
+    shopping: float
+    total: float
 
-
+class AIRecommendationResponse(BaseModel):
+    recommendations: str
 

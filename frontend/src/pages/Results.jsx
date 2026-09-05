@@ -1,11 +1,48 @@
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import EmissionChart from "../components/EmissionChart";
 import EmissionCard from "../components/EmissionCard";
+import api from "../services/api";
 import "../App.css";
 
 export default function Results() {
     const location = useLocation();
     const result = location.state?.result;
+
+    const [recommendations, setRecommendations] = useState("");
+    const [aiLoading, setAiLoading] = useState(false);
+    const [aiError, setAiError] = useState("");
+
+useEffect(() => {
+    if (!result) {
+        return;
+    }
+
+    async function fetchRecommendations() {
+        setAiLoading(true);
+        setAiError("");
+
+        try {
+            const response = await api.post("/ai-recommendations", {
+                transport: result.transport,
+                electricity: result.electricity,
+                flights: result.flights,
+                diet: result.diet,
+                shopping: result.shopping,
+                total: result.total
+            });
+
+            setRecommendations(response.data.recommendations);
+        } catch (error) {
+            console.error("AI recommendation error:", error);
+            setAiError("Unable to load AI recommendations right now.");
+        } finally {
+            setAiLoading(false);
+        }
+    }
+
+    fetchRecommendations();
+}, [result]);
 
     return (
         <>
@@ -31,6 +68,25 @@ export default function Results() {
                     </p>
 
                     <EmissionChart results={result} />
+                    <div className="ai-recommendations">
+                        <h2>🤖 AI Sustainability Recommendations</h2>
+
+                        {aiLoading && (
+                            <p>Analyzing your carbon footprint...</p>
+                        )}
+
+                        {aiError && (
+                            <p className="error-message">
+                                {aiError}
+                            </p>
+                        )}
+
+                        {!aiLoading && !aiError && recommendations && (
+                            <p className="ai-response">
+                                {recommendations}
+                            </p>
+                        )}
+                    </div>
                 </div>
             )}
         </>

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from schemas import CarbonRequest, CarbonResponse
+from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest
 from fastapi.middleware.cors import CORSMiddleware
-from ai_service import test_gemini
+from ai_service import get_recommendations
 
 app = FastAPI()
 app.add_middleware(
@@ -57,7 +57,11 @@ def calculate(data: CarbonRequest):
         total= total
     )
 
-@app.get("/ai-test")
-def ai_test():
-    return {"message": test_gemini()}
+@app.post("/ai-recommendations")
+def ai_recommendations(data: AIRecommendationRequest):
+    recommendations = get_recommendations(data)
+
+    return {
+        "recommendations": recommendations
+    }
 

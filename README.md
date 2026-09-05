@@ -51,6 +51,8 @@ carbon-emission-ai/
 ├── backend/
 │   ├── main.py
 │   ├── schemas.py
+│   ├── ai_service.py
+│   ├── requirements.txt
 │   └── ...
 ├── frontend/
 │   ├── src/
@@ -60,7 +62,7 @@ carbon-emission-ai/
 │   │   ├── App.jsx
 │   │   ├── App.css
 │   │   ├── index.css
-|   |   └── main.jsx
+│   │   └── main.jsx
 │   ├── package.json
 │   └── ...
 ├── .gitignore
@@ -93,7 +95,13 @@ source .venv/Scripts/activate
 Install dependencies:
 
 ```bash
-pip install fastapi uvicorn pydantic
+pip install -r requirements.txt
+```
+
+Create a `.env` file inside the backend `backend` directory and add your Gemini API key:
+
+```env
+GEMINI_API_KEY=your_api_key_here
 ```
 
 Start the API:
@@ -149,7 +157,17 @@ JSON response
 React Results Page
   ├── Emission Cards
   ├── Annual Total
-  └── Emission Breakdown Chart
+  ├── Emission Breakdown Chart
+  │
+  └── AI Recommendation Request
+          ↓
+      FastAPI AI Endpoint
+          ↓
+       Gemini API
+          ↓
+   Personalized Recommendations
+          ↓
+      React Results Page
 ```
 
 
@@ -235,7 +253,7 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 
 ### Phase 3 — AI 🤖
 
-- [ ] AI-powered personalized reduction tips
+- [x] AI-powered personalized reduction tips
 - [ ] What-if scenarios
 - [ ] Personalized sustainability insights
 
