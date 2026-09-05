@@ -163,6 +163,30 @@ body{
         padding: 20px 10px;
         overflow: visible;
     }
+
+    /* ---------- AI Recommendations ---------- */
+
+    .ai-recommendations {
+        padding: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    .ai-header {
+        align-items: flex-start;
+    }
+
+    .ai-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .ai-header p {
+        font-size: 0.82rem;
+    }
+
+    .ai-response {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
 }
 
 /* ---------- Page Transition Animation ---------- */

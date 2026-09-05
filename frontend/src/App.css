@@ -518,24 +518,92 @@ button:hover{
 /* ---------- AI Recommendations ---------- */
 
 .ai-recommendations {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-radius: 20px;
+    margin-top: 2.5rem;
+    padding: 1.75rem;
+    border-radius: 22px;
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
-.ai-recommendations h2 {
-    margin-bottom: 1rem;
+.ai-header {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.ai-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(34, 197, 94, 0.14);
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.ai-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.ai-header p {
+    margin: 0.3rem 0 0;
+    color: #9CA3AF;
+    font-size: 0.9rem;
 }
 
 .ai-response {
     white-space: pre-line;
-    line-height: 1.7;
+    line-height: 1.75;
     color: #F3F4F6;
+    font-size: 0.98rem;
 }
 
-.ai-recommendations p {
+.ai-loading {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #9CA3AF;
+}
+
+.ai-loading p {
     margin: 0;
+}
+
+.ai-loading-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22C55E;
+    animation: ai-pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes ai-pulse {
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ai-error {
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.ai-error p {
+    margin: 0;
+    color: #FCA5A5;
 }

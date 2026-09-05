@@ -69,22 +69,36 @@ useEffect(() => {
 
                     <EmissionChart results={result} />
                     <div className="ai-recommendations">
-                        <h2>🤖 AI Sustainability Recommendations</h2>
+                        <div className="ai-header">
+                            <div className="ai-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 16 16">
+                                <path d="M0 0h16v16H0z" fill="none" />
+                                <path fill="#fff" d="M12 9H4c-.827 0-1.5.673-1.5 1.5v.5c0 .123.062 3 5.5 3s5.5-2.877 5.5-3v-.5c0-.827-.673-1.5-1.5-1.5m.5 1.991C12.497 11.073 12.372 13 8 13s-4.497-1.927-4.5-2v-.5A.5.5 0 0 1 4 10h8a.5.5 0 0 1 .5.5zM5.5 8h5c.827 0 1.5-.673 1.5-1.5v-3c0-.827-.673-1.5-1.5-1.5h-2v-.5a.5.5 0 0 0-1 0V2h-2C4.673 2 4 2.673 4 3.5v3C4 7.327 4.673 8 5.5 8M5 3.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5zM5.75 5a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0m3 0a.75.75 0 1 1 1.5 0a.75.75 0 0 1-1.5 0" />
+                            </svg>
+                            </div>
+
+                            <div>
+                                <h2>AI Sustainability Recommendations</h2>
+                                <p>Personalized suggestions based on your emissions</p>
+                            </div>
+                        </div>
 
                         {aiLoading && (
-                            <p>Analyzing your carbon footprint...</p>
+                            <div className="ai-loading">
+                                <div className="ai-loading-dot"></div>
+                                <p>Analyzing your carbon footprint...</p>
+                            </div>
                         )}
 
                         {aiError && (
-                            <p className="error-message">
-                                {aiError}
-                            </p>
+                            <div className="ai-error">
+                                <p>{aiError}</p>
+                            </div>
                         )}
 
                         {!aiLoading && !aiError && recommendations && (
-                            <p className="ai-response">
+                            <div className="ai-response">
                                 {recommendations}
-                            </p>
+                            </div>
                         )}
                     </div>
                 </div>

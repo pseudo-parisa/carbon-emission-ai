@@ -49,6 +49,9 @@ Recommended actions:
 2. [recommendation]
 3. [recommendation]
 
+Do not use Markdown formatting such as **bold**, bullet points, headings with #, or other Markdown symbols.
+Use plain text only.
+
 Focus on practical lifestyle changes rather than unrealistic suggestions.
 """
 
