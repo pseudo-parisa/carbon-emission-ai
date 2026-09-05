@@ -13,6 +13,10 @@ export default function Results() {
     const [aiLoading, setAiLoading] = useState(false);
     const [aiError, setAiError] = useState("");
 
+    const [insights, setInsights] = useState("");
+    const [insightsLoading, setInsightsLoading] = useState(false);
+    const [insightsError, setInsightsError] = useState("");
+
 useEffect(() => {
     if (!result) {
         return;
@@ -43,6 +47,38 @@ useEffect(() => {
 
     fetchRecommendations();
 }, [result]);
+
+useEffect(() => {
+    if (!result) {
+        return;
+    }
+
+    async function fetchInsights() {
+        setInsightsLoading(true);
+        setInsightsError("");
+
+        try {
+            const response = await api.post("/ai-insights", {
+                transport: result.transport,
+                electricity: result.electricity,
+                flights: result.flights,
+                diet: result.diet,
+                shopping: result.shopping,
+                total: result.total
+            });
+
+            setInsights(response.data.insights);
+        } catch (error) {
+            console.error("AI insights error:", error);
+            setInsightsError("Unable to load AI insights right now.");
+        } finally {
+            setInsightsLoading(false);
+        }
+    }
+
+    fetchInsights();
+}, [result]);
+
 
     return (
         <>
@@ -98,6 +134,35 @@ useEffect(() => {
                         {!aiLoading && !aiError && recommendations && (
                             <div className="ai-response">
                                 {recommendations}
+                            </div>
+                        )}
+                    </div>
+                    <div className="ai-insights">
+                        <div className="ai-insights-header">
+                            <div className="ai-insights-icon">🌱</div>
+
+                            <div>
+                                <h2>AI Carbon Insights</h2>
+                                <p>What your emission data tells you</p>
+                            </div>
+                        </div>
+
+                        {insightsLoading && (
+                            <div className="ai-loading">
+                                <div className="ai-loading-dot"></div>
+                                <p>Analyzing your emission patterns...</p>
+                            </div>
+                        )}
+
+                        {insightsError && (
+                            <div className="ai-error">
+                                <p>{insightsError}</p>
+                            </div>
+                        )}
+
+                        {!insightsLoading && !insightsError && insights && (
+                            <div className="ai-response">
+                                {insights}
                             </div>
                         )}
                     </div>

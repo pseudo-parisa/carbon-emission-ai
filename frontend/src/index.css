@@ -187,6 +187,23 @@ body{
         font-size: 0.92rem;
         line-height: 1.7;
     }
+
+    .ai-insights {
+        padding: 1.25rem;
+        margin-top: 1.25rem;
+    }
+
+    .ai-insights-header {
+        align-items: flex-start;
+    }
+
+    .ai-insights-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .ai-insights-header p {
+        font-size: 0.82rem;
+    }
 }
 
 /* ---------- Page Transition Animation ---------- */

@@ -29,3 +29,14 @@ class AIRecommendationRequest(BaseModel):
 class AIRecommendationResponse(BaseModel):
     recommendations: str
 
+class AIInsightRequest(BaseModel):
+    transport: float
+    electricity: float
+    flights: float
+    diet: float
+    shopping: float
+    total: float
+
+
+class AIInsightResponse(BaseModel):
+    insights: str

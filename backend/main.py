@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest
+from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse
 from fastapi.middleware.cors import CORSMiddleware
-from ai_service import get_recommendations
+from ai_service import get_recommendations, get_insights
 
 app = FastAPI()
 app.add_middleware(
@@ -65,3 +65,10 @@ def ai_recommendations(data: AIRecommendationRequest):
         "recommendations": recommendations
     }
 
+@app.post("/ai-insights", response_model=AIInsightResponse)
+def ai_insights(data: AIInsightRequest):
+    insights = get_insights(data)
+
+    return {
+        "insights": insights
+    }
