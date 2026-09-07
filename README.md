@@ -255,7 +255,7 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 
 - [x] AI-powered personalized reduction tips
 - [ ] What-if scenarios
-- [ ] Personalized sustainability insights
+- [x] Personalized sustainability insights
 
 ### Phase 4 — Production 🚀
 
@@ -277,6 +277,10 @@ The core application is functional. Mobile responsiveness and other visual refin
 **Phase 2 — Polish: COMPLETE ✅**
 
 The application has been refined with improved desktop UI, responsive layouts, mobile optimization, animations and transitions, and overall visual improvements.
+
+**Phase 3 — AI: COMPLETE ✅**
+
+Gemini AI has been integrated into the backend to provide personalized carbon reduction recommendations and sustainability insights based on the user's calculated emissions. What-if scenarios are planned for later.
 
 ---
 
