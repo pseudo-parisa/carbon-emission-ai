@@ -139,7 +139,15 @@ useEffect(() => {
                     </div>
                     <div className="ai-insights">
                         <div className="ai-insights-header">
-                            <div className="ai-insights-icon">🌱</div>
+                            <div className="ai-insights-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <path d="M7 8a5 5 0 1 0 10 0A5 5 0 1 0 7 8" />
+                                    <path d="M9 16h6" />
+                                    <path d="M10 19h4" />
+                                </g>
+                            </svg>
+                            </div>
 
                             <div>
                                 <h2>AI Carbon Insights</h2>
