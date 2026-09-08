@@ -3,3 +3,5 @@ uvicorn
 pydantic
 google-genai
 python-dotenv
+sqlalchemy
+psycopg[binary]
