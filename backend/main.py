@@ -1,9 +1,13 @@
 from fastapi import FastAPI
 from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse
 from fastapi.middleware.cors import CORSMiddleware
-from ai_service import get_recommendations, get_insights
+from ai_service import get_recommendations
+
+from database import Base, engine
+import models
 
 app = FastAPI()
+Base.metadata.create_all(bind=engine)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
