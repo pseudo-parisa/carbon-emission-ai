@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse
 from fastapi.middleware.cors import CORSMiddleware
-from ai_service import get_recommendations
+from ai_service import get_recommendations, get_insights
 
 from database import Base, SessionLocal, engine
 import models
@@ -15,7 +15,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/")
 def home():
