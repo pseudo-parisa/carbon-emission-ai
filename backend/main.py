@@ -3,7 +3,7 @@ from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIIn
 from fastapi.middleware.cors import CORSMiddleware
 from ai_service import get_recommendations
 
-from database import Base, engine
+from database import Base, SessionLocal, engine
 import models
 
 app = FastAPI()
@@ -24,42 +24,54 @@ def home():
 
 @app.post("/calculate", response_model=CarbonResponse)
 def calculate(data: CarbonRequest):
+    db = SessionLocal()
 
-    transport = data.carDistance * 0.192
-    electricity = data.electricityUsage * 12 * 0.4
-    flights = data.flightsPerYear * 250
+    try:
+        transport = data.carDistance * 0.192
+        electricity = data.electricityUsage * 12 * 0.4
+        flights = data.flightsPerYear * 250
 
-    diet_map = {
-        "vegetarian": 1500,
-        "mixed": 2200,
-        "heavyMeat": 3300
-    }
+        diet_map = {
+            "vegetarian": 1500,
+            "mixed": 2200,
+            "heavyMeat": 3300
+        }
 
-    shopping_map = {
-        "low": 200,
-        "medium": 500,
-        "high": 900
-    }
+        shopping_map = {
+            "low": 200,
+            "medium": 500,
+            "high": 900
+        }
 
-    diet = diet_map[data.dietaryHabits]
-    shopping = shopping_map[data.shoppingHabits]
+        diet = diet_map[data.dietaryHabits]
+        shopping = shopping_map[data.shoppingHabits]
 
-    total = (
-        transport
-        + electricity
-        + flights
-        + diet
-        + shopping
-    )
+        total = transport + electricity + flights + diet + shopping
 
-    return CarbonResponse(
-        transport=transport,
-        electricity=electricity,
-        flights=flights,
-        diet=diet,
-        shopping=shopping,
-        total= total
-    )
+        calculation = models.Calculation(
+            transport=transport,
+            electricity=electricity,
+            flights=flights,
+            diet=diet,
+            shopping=shopping,
+            total=total
+        )
+
+        db.add(calculation)
+        db.commit()
+        db.refresh(calculation)
+
+        return CarbonResponse(
+            transport=transport,
+            electricity=electricity,
+            flights=flights,
+            diet=diet,
+            shopping=shopping,
+            total=total
+        )
+
+    finally:
+        db.close()
 
 @app.post("/ai-recommendations")
 def ai_recommendations(data: AIRecommendationRequest):
