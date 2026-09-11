@@ -1,3 +1,4 @@
+from datetime import datetime
 from pydantic import BaseModel, Field
 from typing import Literal
 
@@ -18,6 +19,7 @@ class CarbonResponse(BaseModel):
     shopping: float
     total: float
 
+
 class AIRecommendationRequest(BaseModel):
     transport: float
     electricity: float
@@ -26,8 +28,10 @@ class AIRecommendationRequest(BaseModel):
     shopping: float
     total: float
 
+
 class AIRecommendationResponse(BaseModel):
     recommendations: str
+
 
 class AIInsightRequest(BaseModel):
     transport: float
@@ -40,3 +44,18 @@ class AIInsightRequest(BaseModel):
 
 class AIInsightResponse(BaseModel):
     insights: str
+
+
+class CalculationResponse(BaseModel):
+    id: int
+    transport: float
+    electricity: float
+    flights: float
+    diet: float
+    shopping: float
+    total: float
+    created_at: datetime
+
+    model_config = {
+        "from_attributes": True
+    }

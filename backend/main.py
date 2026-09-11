@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse
 from fastapi.middleware.cors import CORSMiddleware
+
+from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse, CalculationResponse
+
 from ai_service import get_recommendations, get_insights
 
 from database import Base, SessionLocal, engine
@@ -68,6 +70,18 @@ def calculate(data: CarbonRequest):
             shopping=shopping,
             total=total
         )
+
+    finally:
+        db.close()
+
+@app.get("/calculations", response_model=list[CalculationResponse])
+def get_calculations():
+    db = SessionLocal()
+
+    try:
+        calculations = db.query(models.Calculation).all()
+
+        return calculations
 
     finally:
         db.close()
