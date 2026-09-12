@@ -5,3 +5,8 @@ const api = axios.create({
 });
 
 export default api;
+
+export const getCalculations = async () => {
+  const response = await api.get("/calculations");
+  return response.data;
+};
