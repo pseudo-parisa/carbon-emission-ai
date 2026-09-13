@@ -647,3 +647,132 @@ button:hover{
     color: #9CA3AF;
     font-size: 0.9rem;
 }
+
+/* ---------- History Page ---------- */
+
+.history-page {
+    min-height: 100vh;
+    padding: 10px 24px 60px;
+}
+
+.history-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.history-header {
+    margin-bottom: 32px;
+}
+
+.history-header h1 {
+    margin-bottom: 8px;
+}
+
+.history-header p {
+    margin: 0;
+    opacity: 0.75;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.history-card {
+    padding: 28px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.history-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.history-card-header h2 {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+}
+
+.history-card-header p {
+    margin: 0;
+    opacity: 0.65;
+}
+
+.history-total {
+    color: #4ade80;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.history-total span {
+    font-size: 0.85rem;
+    opacity: 0.65;
+}
+
+.history-total strong {
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.history-total small {
+    opacity: 0.65;
+}
+
+.history-breakdown {
+    color: #d1d5db;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.history-item {
+    padding: 16px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.history-item span {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    opacity: 0.65;
+}
+
+.history-item strong {
+    font-size: 0.95rem;
+}
+
+.history-empty,
+.history-message {
+    text-align: center;
+}
+
+.history-empty {
+    padding: 60px 24px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.history-empty h2 {
+    margin-bottom: 8px;
+}
+
+.history-empty p {
+    margin: 0;
+    opacity: 0.7;
+}
+
+.history-error {
+    color: #ff8f8f;
+}

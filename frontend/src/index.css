@@ -204,6 +204,36 @@ body{
     .ai-insights-header p {
         font-size: 0.82rem;
     }
+
+    /* ---------- History Page ---------- */
+
+    .history-breakdown {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .history-page {
+        padding: 100px 16px 40px;
+    }
+
+    .history-card {
+        padding: 20px;
+    }
+
+    .history-card-header {
+        flex-direction: column;
+    }
+
+    .history-total {
+        align-items: flex-start;
+    }
+
+    .history-total strong {
+        font-size: 1.5rem;
+    }
+
+    .history-breakdown {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ---------- Page Transition Animation ---------- */
