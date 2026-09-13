@@ -24,6 +24,19 @@ function History() {
         fetchCalculations();
     }, []);
 
+    const calculationCount = calculations.length;
+
+    const latestCalculation =
+        calculations.length > 0 ? calculations[calculations.length - 1] : null;
+
+    const averageTotal =
+        calculations.length > 0
+            ? calculations.reduce(
+                  (sum, calculation) => sum + calculation.total,
+                  0
+              ) / calculations.length
+            : 0;
+
     if (loading) {
         return (
             <main className="history-page">
@@ -53,7 +66,28 @@ function History() {
                         Review your previous carbon footprint calculations.
                     </p>
                 </div>
+                <div className="history-summary">
+                    <div className="summary-card">
+                        <span>Calculations</span>
+                        <strong>{calculationCount}</strong>
+                    </div>
 
+                    <div className="summary-card">
+                        <span>Latest Total</span>
+                        <strong>
+                            {latestCalculation
+                                ? latestCalculation.total.toFixed(2)
+                                : "0.00"}
+                        </strong>
+                        <small>kg CO₂</small>
+                    </div>
+
+                    <div className="summary-card">
+                        <span>Average Total</span>
+                        <strong>{averageTotal.toFixed(2)}</strong>
+                        <small>kg CO₂</small>
+                    </div>
+                </div>
                 {calculations.length === 0 ? (
                     <div className="history-empty">
                         <h2>No calculations yet</h2>

@@ -697,6 +697,11 @@ button:hover{
     margin-bottom: 24px;
 }
 
+.history-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.13);
+}
+
 .history-card-header h2 {
     margin: 0 0 6px;
     font-size: 1.25rem;
@@ -775,4 +780,41 @@ button:hover{
 
 .history-error {
     color: #ff8f8f;
+}
+
+.history-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.summary-card {
+    color: #d1d5db;
+    padding: 22px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.summary-card span {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    opacity: 0.65;
+}
+
+.summary-card strong {
+    display: block;
+    font-size: 1.5rem;
+}
+
+.summary-card small {
+    opacity: 0.65;
 }
