@@ -818,3 +818,74 @@ button:hover{
 .summary-card small {
     opacity: 0.65;
 }
+
+.history-trend {
+    margin-bottom: 32px;
+    padding: 28px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+}
+
+.trend-header {
+    margin-bottom: 24px;
+}
+
+.trend-header h2 {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+}
+
+.trend-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+}
+
+.trend-value {
+    color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+}
+
+.trend-value span {
+    color: #d1d5db;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    opacity: 0.65;
+}
+
+.trend-value strong {
+    color: #4ade80;
+    font-size: 1.8rem;
+    margin: 4px 0;
+}
+
+.trend-value small {
+    color: #4ade80;
+    font-size: 0.85rem;
+    opacity: 0.65;
+}
+
+.trend-comparison {
+    color: #d1d5db;
+    display: flex;
+    gap: 40px;
+}
+
+.trend-comparison div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.trend-comparison span {
+    font-size: 0.85rem;
+    opacity: 0.65;
+}
+
+.trend-comparison strong {
+    font-size: 1rem;
+}

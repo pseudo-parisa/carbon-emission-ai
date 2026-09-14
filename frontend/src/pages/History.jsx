@@ -37,6 +37,21 @@ function History() {
               ) / calculations.length
             : 0;
 
+    const previousCalculation =
+    calculations.length > 1
+        ? calculations[calculations.length - 2]
+        : null;
+
+    const carbonChange =
+        latestCalculation && previousCalculation
+            ? latestCalculation.total - previousCalculation.total
+            : null;
+
+    const carbonChangePercentage =
+        latestCalculation && previousCalculation
+            ? (carbonChange / previousCalculation.total) * 100
+            : null;
+
     if (loading) {
         return (
             <main className="history-page">
@@ -66,6 +81,47 @@ function History() {
                         Review your previous carbon footprint calculations.
                     </p>
                 </div>
+
+                    {latestCalculation && previousCalculation && (
+                        <div className="history-trend">
+                            <div className="trend-header">
+                                <h2>Your Carbon Trend</h2>
+                            </div>
+
+                            <div className="trend-content">
+                                <div className="trend-value">
+                                    <span>Change</span>
+
+                                    <strong>
+                                        {carbonChange > 0 ? "+" : ""}
+                                        {carbonChange.toFixed(2)} kg CO₂
+                                    </strong>
+
+                                    <small>
+                                        {carbonChangePercentage > 0 ? "+" : ""}
+                                        {carbonChangePercentage.toFixed(2)}%
+                                    </small>
+                                </div>
+
+                                <div className="trend-comparison">
+                                    <div>
+                                        <span>Previous</span>
+                                        <strong>
+                                            {previousCalculation.total.toFixed(2)} kg
+                                        </strong>
+                                    </div>
+
+                                    <div>
+                                        <span>Latest</span>
+                                        <strong>
+                                            {latestCalculation.total.toFixed(2)} kg
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                
                 <div className="history-summary">
                     <div className="summary-card">
                         <span>Calculations</span>
