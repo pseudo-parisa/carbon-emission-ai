@@ -79,7 +79,11 @@ def get_calculations():
     db = SessionLocal()
 
     try:
-        calculations = db.query(models.Calculation).all()
+        calculations = (
+            db.query(models.Calculation)
+            .order_by(models.Calculation.created_at.asc())
+            .all()
+        )
 
         return calculations
 
