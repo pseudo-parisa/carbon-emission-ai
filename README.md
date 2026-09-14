@@ -16,6 +16,10 @@ An AI-powered web application that calculates a user's carbon footprint and prov
 - 🛍️ Shopping-based emissions
 - 📊 Results dashboard
 - 📊 Emission breakdown charts
+- 🗄️ PostgreSQL calculation storage
+- 📜 Calculation history
+- 📈 History summary statistics
+- 📉 Carbon footprint trend comparison
 - 📈 Progress tracking (planned)
 - 🔐 User authentication (planned)
 
@@ -38,6 +42,7 @@ An AI-powered web application that calculates a user's carbon footprint and prov
 - Uvicorn
 - SQLAlchemy
 - PostgreSQL
+- Psycopg
 
 ### AI
 - Google Gemini API
@@ -51,6 +56,8 @@ carbon-emission-ai/
 ├── backend/
 │   ├── main.py
 │   ├── schemas.py
+│   ├── models.py
+│   ├── database.py
 │   ├── ai_service.py
 │   ├── requirements.txt
 │   └── ...
@@ -98,10 +105,11 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Create a `.env` file inside the backend `backend` directory and add your Gemini API key:
+Create a `.env` file inside the backend `backend` directory and add your Gemini API key and database configuration:
 
 ```env
 GEMINI_API_KEY=your_api_key_here
+DATABASE_URL=postgresql+psycopg://postgres:your_password@localhost:5432/carbon_compass
 ```
 
 Start the API:
@@ -152,6 +160,10 @@ Pydantic validation
   ↓
 Carbon calculation
   ↓
+SQLAlchemy
+  ↓
+PostgreSQL
+  ↓
 JSON response
   ↓
 React Results Page
@@ -165,12 +177,27 @@ React Results Page
           ↓
        Gemini API
           ↓
-   Personalized Recommendations
+  Personalized Recommendations
           ↓
       React Results Page
+
+
+Calculation History Flow
+
+PostgreSQL
+    ↓
+FastAPI GET /calculations
+    ↓
+React History Page
+    ├── Saved Calculations
+    ├── Summary Statistics
+    └── Carbon Trend Comparison
 ```
 
-
+**Transportation**
+```text
+car distance x 0.192
+```
 
 **Electricity**
 ```text
@@ -201,6 +228,59 @@ flights per year × 250
 The total is calculated by adding transportation, electricity, flights, diet, and shopping emissions.
 
 > These are simplified project assumptions for educational purposes, not professional carbon-accounting measurements.
+
+## 🗄️ Database
+
+Carbon Compass uses PostgreSQL with SQLAlchemy to persist completed carbon footprint calculations.
+
+Each calculation stores:
+
+- Transportation emissions
+- Electricity emissions
+- Flight emissions
+- Diet emissions
+- Shopping emissions
+- Total emissions
+- Calculation timestamp
+
+The backend provides a calculation retrieval endpoint:
+
+```text
+GET /calculations
+```
+The frontend uses this data to display saved calculation history and compare recent carbon footprint results.
+
+## 🤖 AI Features
+
+Google Gemini is integrated into the backend to provide:
+
+### Personalized Reduction Recommendations
+
+Recommendations are generated based on the user's calculated emission breakdown.
+
+### Sustainability Insights
+
+The application also generates personalized insights that interpret the user's overall emission pattern and identify areas of focus.
+
+### What-If Scenarios
+
+Planned for a future phase.
+
+## 📜 Calculation History
+
+Users can view previously saved carbon footprint calculations through the History page.
+
+The History page provides:
+
+- Saved calculation dates
+- Total carbon footprint
+- Emission category breakdowns
+- Number of saved calculations
+- Latest carbon footprint
+- Average carbon footprint
+- Comparison between the latest and previous calculation
+
+Calculations are retrieved from PostgreSQL through the FastAPI backend.
 
 ## ✅ Validation & Testing
 
@@ -248,7 +328,7 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 - [x] Navbar refinements
 - [x] Cleaner component architecture
 - [x] Animations and transitions
-- [x] Accesiibility 
+- [x] Accessibility 
 - [x] Additional UI polish
 
 ### Phase 3 — AI 🤖
@@ -259,14 +339,25 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 
 ### Phase 4 — Production 🚀
 
-- [ ] Database integration
+- [x] PostgreSQL database integration
+- [x] SQLAlchemy database foundation
+- [x] Calculation persistence 
+- [x] Calculation retrieval API
+- [x] Frontend calculation history
+- [x] History summary statistics 
+- [x] Carbon footprint trend
 - [ ] User accounts
-- [ ] Calculation history
+- [ ] User-specific calculation history
+- [ ] Long-term carbon tracking
+- [ ] Annual carbon trends
+- [ ] What-if scenarios
 - [ ] Deployment
 
 ## 🎯 Project Goal
 
-Carbon Compass is designed to demonstrate a complete full-stack workflow using React, REST APIs, FastAPI, data validation, and data visualization, while providing a foundation for future AI, database, and deployment features.
+Carbon Compass is designed to demonstrate a complete full-stack workflow using React, REST APIs, FastAPI, data validation, data persistence, PostgreSQL, SQLAlchemy, AI integration, and data visualization.
+
+The project provides a foundation for personalized sustainability insights, user accounts, long-term carbon tracking, and future deployment.
 
 ## 📌 Current Status
 
