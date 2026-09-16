@@ -1,13 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse, CalculationResponse, UserCreate, UserResponse
+from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse, CalculationResponse, UserCreate, UserResponse, UserLogin, TokenResponse
 
 from ai_service import get_recommendations, get_insights
 
 from database import Base, SessionLocal, engine
 import models
-from auth import hash_password
+from auth import create_access_token, hash_password, verify_password
 
 
 app = FastAPI()
@@ -53,6 +53,39 @@ def register(data: UserCreate):
         db.refresh(user)
 
         return user
+
+    finally:
+        db.close()
+
+@app.post("/login", response_model=TokenResponse)
+def login(data: UserLogin):
+    db = SessionLocal()
+
+    try:
+        user = (
+            db.query(models.User)
+            .filter(models.User.email == data.email)
+            .first()
+        )
+
+        if not user:
+            raise HTTPException(
+                status_code=401,
+                detail="Invalid email or password."
+            )
+
+        if not verify_password(data.password, user.password_hash):
+            raise HTTPException(
+                status_code=401,
+                detail="Invalid email or password."
+            )
+
+        access_token = create_access_token(user.id)
+
+        return TokenResponse(
+            access_token=access_token,
+            token_type="bearer"
+        )
 
     finally:
         db.close()
