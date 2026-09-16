@@ -1,12 +1,14 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse, CalculationResponse
+from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse, CalculationResponse, UserCreate, UserResponse
 
 from ai_service import get_recommendations, get_insights
 
 from database import Base, SessionLocal, engine
 import models
+from auth import hash_password
+
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
@@ -22,6 +24,38 @@ app.add_middleware(
 def home():
     return {"message": "Carbon Compass API is running!"}
 
+@app.post("/register", response_model=UserResponse)
+def register(data: UserCreate):
+    db = SessionLocal()
+
+    try:
+        existing_user = (
+            db.query(models.User)
+            .filter(models.User.email == data.email)
+            .first()
+        )
+
+        if existing_user:
+            raise HTTPException(
+                status_code=400,
+                detail="Email already registered."
+            )
+
+        hashed_password = hash_password(data.password)
+
+        user = models.User(
+            email=data.email,
+            password_hash=hashed_password
+        )
+
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+
+        return user
+
+    finally:
+        db.close()
 
 @app.post("/calculate", response_model=CarbonResponse)
 def calculate(data: CarbonRequest):

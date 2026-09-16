@@ -59,3 +59,17 @@ class CalculationResponse(BaseModel):
     model_config = {
         "from_attributes": True
     }
+
+class UserCreate(BaseModel):
+    email: str
+    password: str
+
+
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    created_at: datetime
+
+    model_config = {
+        "from_attributes": True
+    }
