@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException
+import jwt
+from fastapi import FastAPI, HTTPException, Depends
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
 
 from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse, CalculationResponse, UserCreate, UserResponse, UserLogin, TokenResponse
@@ -7,8 +9,10 @@ from ai_service import get_recommendations, get_insights
 
 from database import Base, SessionLocal, engine
 import models
-from auth import create_access_token, hash_password, verify_password
+from auth import create_access_token, hash_password, verify_password, get_user_id_from_token
 
+
+security = HTTPBearer()
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
@@ -19,6 +23,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+def get_current_user_id(
+    credentials: HTTPAuthorizationCredentials = Depends(security)
+) -> int:
+    try:
+        return get_user_id_from_token(credentials.credentials)
+    except (jwt.InvalidTokenError, ValueError):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid or expired token."
+        )
 
 @app.get("/")
 def home():
@@ -91,7 +106,7 @@ def login(data: UserLogin):
         db.close()
 
 @app.post("/calculate", response_model=CarbonResponse)
-def calculate(data: CarbonRequest):
+def calculate(data: CarbonRequest, user_id: int = Depends(get_current_user_id)):
     db = SessionLocal()
 
     try:
@@ -122,7 +137,8 @@ def calculate(data: CarbonRequest):
             flights=flights,
             diet=diet,
             shopping=shopping,
-            total=total
+            total=total,
+            user_id=user_id
         )
 
         db.add(calculation)
@@ -142,12 +158,13 @@ def calculate(data: CarbonRequest):
         db.close()
 
 @app.get("/calculations", response_model=list[CalculationResponse])
-def get_calculations():
+def get_calculations(user_id: int = Depends(get_current_user_id)):
     db = SessionLocal()
 
     try:
         calculations = (
             db.query(models.Calculation)
+            .filter(models.Calculation.user_id == user_id)  
             .order_by(models.Calculation.created_at.asc())
             .all()
         )
