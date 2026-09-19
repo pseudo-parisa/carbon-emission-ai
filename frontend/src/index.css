@@ -249,6 +249,16 @@ body{
         justify-content: space-between;
         gap: 20px;
     }
+
+    /* ---------- Auth Pages ---------- */
+
+    .auth-page {
+        padding: 100px 16px 40px;
+    }
+
+    .auth-container {
+        padding: 24px;
+    }
 }
 
 /* ---------- Page Transition Animation ---------- */
