@@ -20,8 +20,9 @@ An AI-powered web application that calculates a user's carbon footprint and prov
 - 📜 Calculation history
 - 📈 History summary statistics
 - 📉 Carbon footprint trend comparison
-- 📈 Progress tracking (planned)
-- 🔐 User authentication (planned)
+- 📈 Progress tracking 
+- 🔐 User registration and authentication 
+- 👤 User-specific calculation history
 
 ---
 
@@ -43,6 +44,8 @@ An AI-powered web application that calculates a user's carbon footprint and prov
 - SQLAlchemy
 - PostgreSQL
 - Psycopg
+- JWT Authentication
+- Password Hashing
 
 ### AI
 - Google Gemini API
@@ -58,6 +61,7 @@ carbon-emission-ai/
 │   ├── schemas.py
 │   ├── models.py
 │   ├── database.py
+│   ├── auth.py
 │   ├── ai_service.py
 │   ├── requirements.txt
 │   └── ...
@@ -150,19 +154,29 @@ http://localhost:5173
 ```text
 User
   ↓
+Register / Login
+  ↓
+JWT Authentication
+  ↓
+React Application
+  ↓
 React Calculator
   ↓
 Axios POST request
   ↓
 FastAPI
   ↓
+Authenticated User
+  ↓
 Pydantic validation
   ↓
-Carbon calculation
+Carbon Calculation
   ↓
 SQLAlchemy
   ↓
 PostgreSQL
+  ↓
+User-linked Calculation
   ↓
 JSON response
   ↓
@@ -233,6 +247,17 @@ The total is calculated by adding transportation, electricity, flights, diet, an
 
 Carbon Compass uses PostgreSQL with SQLAlchemy to persist completed carbon footprint calculations.
 
+### User Accounts
+
+Each user account stores:
+
+- User ID
+- Email
+- Password hash
+- Account creation timestamp
+
+## Calculations
+
 Each calculation stores:
 
 - Transportation emissions
@@ -282,6 +307,22 @@ The History page provides:
 
 Calculations are retrieved from PostgreSQL through the FastAPI backend.
 
+## 🔐 Authentication
+
+Carbon Compass supports user registration and JWT-based authentication.
+
+Users can:
+
+- Create an account
+- Log in securely
+- Receive a JWT access token
+- Access authenticated calculation endpoints
+- Store calculations under their user account
+
+Passwords are hashed before being stored in PostgreSQL rather than being stored as plaintext.
+
+The frontend automatically includes the JWT in authenticated API requests using Axios.
+
 ## ✅ Validation & Testing
 
 The application includes:
@@ -297,6 +338,11 @@ The application includes:
 - Results-page navigation testing
 - Chart rendering testing
 - Calculation/data consistency checks
+- User registration testing
+- Duplicate account validation
+- Login authentication testing
+- JWT-protected endpoint testing
+- User-specific calculation retrieval
 
 The API can be tested through FastAPI's `/docs` interface or Thunder Client.
 
@@ -346,8 +392,8 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 - [x] Frontend calculation history
 - [x] History summary statistics 
 - [x] Carbon footprint trend
-- [ ] User accounts
-- [ ] User-specific calculation history
+- [x] User accounts
+- [x] User-specific calculation history
 - [ ] Long-term carbon tracking
 - [ ] Annual carbon trends
 - [ ] What-if scenarios
