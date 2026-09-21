@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
+    const { login } = useAuth();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
@@ -24,7 +26,7 @@ function Login() {
         setLoading(true);
 
         try {
-            await loginUser(email, password);
+            await login(email, password);
             navigate("/history");
         } catch (error) {
             console.error("Login failed:", error);
