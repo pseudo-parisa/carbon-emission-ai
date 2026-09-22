@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
 import { getCalculations } from "../services/api";
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer,
+} from "recharts";
 import "../App.css";
 
 
@@ -7,6 +16,12 @@ function History() {
     const [calculations, setCalculations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const progressData = calculations.map((calculation, index) => ({
+        name: `#${index + 1}`,
+        date: new Date(calculation.created_at).toLocaleDateString(),
+        total: Number(calculation.total),
+    }));
+
 
     useEffect(() => {
         const fetchCalculations = async () => {
@@ -28,6 +43,15 @@ function History() {
 
     const latestCalculation =
         calculations.length > 0 ? calculations[calculations.length - 1] : null;
+
+    const firstCalculation =
+        calculations.length > 0 ? calculations[0] : null;
+
+    const overallChange =
+        firstCalculation && latestCalculation ? latestCalculation.total - firstCalculation.total : null;
+
+    const overallChangePercentage =
+        firstCalculation && latestCalculation && firstCalculation.total !== 0 ? (overallChange / firstCalculation.total) * 100 : null;
 
     const averageTotal =
         calculations.length > 0
@@ -82,46 +106,46 @@ function History() {
                     </p>
                 </div>
 
-                    {latestCalculation && previousCalculation && (
-                        <div className="history-trend">
-                            <div className="trend-header">
-                                <h2>Your Carbon Trend</h2>
+                {latestCalculation && previousCalculation && (
+                    <div className="history-trend">
+                        <div className="trend-header">
+                            <h2>Your Carbon Trend</h2>
+                        </div>
+
+                        <div className="trend-content">
+                            <div className="trend-value">
+                                <span>Change</span>
+
+                                <strong>
+                                    {carbonChange > 0 ? "+" : ""}
+                                    {carbonChange.toFixed(2)} kg CO₂
+                                </strong>
+
+                                <small>
+                                    {carbonChangePercentage > 0 ? "+" : ""}
+                                    {carbonChangePercentage.toFixed(2)}%
+                                </small>
                             </div>
 
-                            <div className="trend-content">
-                                <div className="trend-value">
-                                    <span>Change</span>
-
+                            <div className="trend-comparison">
+                                <div>
+                                    <span>Previous</span>
                                     <strong>
-                                        {carbonChange > 0 ? "+" : ""}
-                                        {carbonChange.toFixed(2)} kg CO₂
+                                        {previousCalculation.total.toFixed(2)} kg
                                     </strong>
-
-                                    <small>
-                                        {carbonChangePercentage > 0 ? "+" : ""}
-                                        {carbonChangePercentage.toFixed(2)}%
-                                    </small>
                                 </div>
 
-                                <div className="trend-comparison">
-                                    <div>
-                                        <span>Previous</span>
-                                        <strong>
-                                            {previousCalculation.total.toFixed(2)} kg
-                                        </strong>
-                                    </div>
-
-                                    <div>
-                                        <span>Latest</span>
-                                        <strong>
-                                            {latestCalculation.total.toFixed(2)} kg
-                                        </strong>
-                                    </div>
+                                <div>
+                                    <span>Latest</span>
+                                    <strong>
+                                        {latestCalculation.total.toFixed(2)} kg
+                                    </strong>
                                 </div>
                             </div>
                         </div>
-                    )}
-                
+                    </div>
+                )}
+            
                 <div className="history-summary">
                     <div className="summary-card">
                         <span>Calculations</span>
@@ -144,6 +168,78 @@ function History() {
                         <small>kg CO₂</small>
                     </div>
                 </div>
+
+                {calculations.length >= 2 && (
+                    <div className="history-progress">
+                        <div className="progress-header">
+                            <h2>Your Carbon Progress</h2>
+                            <p>
+                                Track how your carbon footprint has changed over time.
+                            </p>
+                        </div>
+                        
+                        <div className="progress-chart">
+                            <ResponsiveContainer width="100%" height={320}>
+                                <LineChart data={progressData}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    <Tooltip
+                                        formatter={(value) => [
+                                            `${Number(value).toFixed(2)} kg CO₂`,
+                                            "Carbon footprint",
+                                        ]}
+                                        labelFormatter={(label) => {
+                                            const point = progressData.find(
+                                                (item) => item.name === label
+                                            );
+
+                                            return point ? point.date : label;
+                                        }}
+                                    />
+                                    <Line
+                                        type="monotone"
+                                        dataKey="total"
+                                        stroke="#4caf50" 
+                                        strokeWidth={3}
+                                        dot={{ r: 5 }}
+                                        activeDot={{ r: 7 }}
+                                    />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </div>
+
+                        <div className="progress-summary">
+                            <div>
+                                <span>First calculation</span>
+                                <strong>
+                                    {firstCalculation.total.toFixed(2)} kg
+                                </strong>
+                            </div>
+
+                            <div>
+                                <span>Latest calculation</span>
+                                <strong>
+                                    {latestCalculation.total.toFixed(2)} kg
+                                </strong>
+                            </div>
+
+                            <div>
+                                <span>Overall change</span>
+                                <strong>
+                                    {overallChange > 0 ? "+" : ""}
+                                    {overallChange.toFixed(2)} kg
+                                </strong>
+
+                                <small>
+                                    {overallChangePercentage > 0 ? "+" : ""}
+                                    {overallChangePercentage.toFixed(2)}%
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                )}                
+
                 {calculations.length === 0 ? (
                     <div className="history-empty">
                         <h2>No calculations yet</h2>
@@ -218,6 +314,7 @@ function History() {
                         ))}
                     </div>
                 )}
+                
             </div>
         </main>
     );

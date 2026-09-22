@@ -11,7 +11,6 @@ from database import Base, SessionLocal, engine
 import models
 from auth import create_access_token, hash_password, verify_password, get_user_id_from_token
 
-
 security = HTTPBearer()
 
 app = FastAPI()

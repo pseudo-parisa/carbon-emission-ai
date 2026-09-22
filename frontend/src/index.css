@@ -259,6 +259,20 @@ body{
     .auth-container {
         padding: 24px;
     }
+
+    /* ---------- Progress Page ---------- */
+
+    .history-progress {
+        padding: 20px;
+    }
+
+    .progress-chart {
+        height: 280px;
+    }
+
+    .progress-summary {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ---------- Page Transition Animation ---------- */
