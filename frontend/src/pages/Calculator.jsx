@@ -56,7 +56,7 @@ export default function Calculator() {
             );
         }
     }
-
+    
     return (
         <div className="calculator-container page-enter">
             <h1>Carbon Footprint Calculator</h1>

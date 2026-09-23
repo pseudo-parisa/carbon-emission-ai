@@ -19,7 +19,6 @@ class CarbonResponse(BaseModel):
     shopping: float
     total: float
 
-
 class AIRecommendationRequest(BaseModel):
     transport: float
     electricity: float

@@ -380,7 +380,6 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 ### Phase 3 — AI 🤖
 
 - [x] AI-powered personalized reduction tips
-- [ ] What-if scenarios
 - [x] Personalized sustainability insights
 
 ### Phase 4 — Production 🚀
@@ -394,9 +393,8 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 - [x] Carbon footprint trend
 - [x] User accounts
 - [x] User-specific calculation history
-- [ ] Long-term carbon tracking
-- [ ] Annual carbon trends
-- [ ] What-if scenarios
+- [x] Long-term carbon tracking
+- [x] Annual carbon trends
 - [ ] Deployment
 
 ## 🎯 Project Goal

@@ -3,7 +3,18 @@ from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
 
-from schemas import CarbonRequest, CarbonResponse, AIRecommendationRequest, AIInsightRequest, AIInsightResponse, CalculationResponse, UserCreate, UserResponse, UserLogin, TokenResponse
+from schemas import (
+    CarbonRequest, 
+    CarbonResponse, 
+    AIRecommendationRequest, 
+    AIInsightRequest, 
+    AIInsightResponse, 
+    CalculationResponse, 
+    UserCreate, 
+    UserResponse, 
+    UserLogin, 
+    TokenResponse,
+)
 
 from ai_service import get_recommendations, get_insights
 
