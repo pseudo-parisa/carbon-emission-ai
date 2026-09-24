@@ -1,6 +1,10 @@
 # 🌱 Carbon Emission AI
 
-An AI-powered web application that calculates a user's carbon footprint and provides personalized sustainability recommendations using Google's Gemini API.
+> An AI-powered full-stack web application that calculates a user's carbon footprint, stores historical calculations, and provides personalized sustainability recommendations and insights using Google's Gemini API.
+
+## 🚀 Live Demo
+
+[Carbon Compass](https://carbon-emission-ai.vercel.app)
 
 ---
 
@@ -20,9 +24,10 @@ An AI-powered web application that calculates a user's carbon footprint and prov
 - 📜 Calculation history
 - 📈 History summary statistics
 - 📉 Carbon footprint trend comparison
-- 📈 Progress tracking 
+- 📈 Long-term carbon progress tracking 
 - 🔐 User registration and authentication 
 - 👤 User-specific calculation history
+- 🚀 Deployed full-stack application
 
 ---
 
@@ -49,6 +54,11 @@ An AI-powered web application that calculates a user's carbon footprint and prov
 
 ### AI
 - Google Gemini API
+
+### Deployment
+- Vercel
+- Render
+- Neon PostgreSQL
 
 ---
 
@@ -106,20 +116,20 @@ source .venv/Scripts/activate
 Install dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 Create a `.env` file inside the backend `backend` directory and add your Gemini API key and database configuration:
 
 ```env
 GEMINI_API_KEY=your_api_key_here
-DATABASE_URL=postgresql+psycopg://postgres:your_password@localhost:5432/carbon_compass
+DATABASE_URL=your_postgresql_connection_string
 ```
 
 Start the API:
 
 ```bash
-uvicorn main:app --reload
+python -m uvicorn main:app --reload
 ```
 
 The API runs at:
@@ -208,6 +218,25 @@ React History Page
     └── Carbon Trend Comparison
 ```
 
+## 🚀 Deployment Architecture
+
+The application is deployed as a separate frontend, backend, and database service:
+
+```text
+React + Vite
+     ↓
+   Vercel
+     ↓
+  FastAPI
+     ↓
+   Render
+     ↓
+Neon PostgreSQL
+
+FastAPI
+   ↓
+Gemini API
+
 **Transportation**
 ```text
 car distance x 0.192
@@ -245,7 +274,9 @@ The total is calculated by adding transportation, electricity, flights, diet, an
 
 ## 🗄️ Database
 
-Carbon Compass uses PostgreSQL with SQLAlchemy to persist completed carbon footprint calculations.
+Carbon Compass uses PostgreSQL with SQLAlchemy to persist user accounts and completed carbon footprint calculations.
+
+The deployed application uses Neon PostgreSQL as its hosted database.
 
 ### User Accounts
 
@@ -277,7 +308,7 @@ The frontend uses this data to display saved calculation history and compare rec
 
 ## 🤖 AI Features
 
-Google Gemini is integrated into the backend to provide:
+Google Gemini is integrated into the backend to provide personalized sustainability analysis.
 
 ### Personalized Reduction Recommendations
 
@@ -285,11 +316,7 @@ Recommendations are generated based on the user's calculated emission breakdown.
 
 ### Sustainability Insights
 
-The application also generates personalized insights that interpret the user's overall emission pattern and identify areas of focus.
-
-### What-If Scenarios
-
-Planned for a future phase.
+The application generates personalized insights that interpret the user's overall emission pattern and identify areas of focus.
 
 ## 📜 Calculation History
 
@@ -323,6 +350,8 @@ Passwords are hashed before being stored in PostgreSQL rather than being stored 
 
 The frontend automatically includes the JWT in authenticated API requests using Axios.
 
+Authentication credentials and API keys are stored using environment variables and are not committed to the repository.
+
 ## ✅ Validation & Testing
 
 The application includes:
@@ -343,6 +372,10 @@ The application includes:
 - Login authentication testing
 - JWT-protected endpoint testing
 - User-specific calculation retrieval
+- Production deployment testing
+- Frontend/backend integration testing
+- Production deployment testing
+- Authentication and user-isolation testing
 
 The API can be tested through FastAPI's `/docs` interface or Thunder Client.
 
@@ -367,7 +400,7 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 - [x] API unavailable handling
 - [x] Calculation/data accuracy audit
 
-### Phase 2 — Polish 🔄
+### Phase 2 — Polish ✨
 
 - [x] Improved mobile responsiveness
 - [x] Responsive charts
@@ -382,7 +415,7 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 - [x] AI-powered personalized reduction tips
 - [x] Personalized sustainability insights
 
-### Phase 4 — Production 🚀
+### Phase 4 — Persistence & Production 🚀
 
 - [x] PostgreSQL database integration
 - [x] SQLAlchemy database foundation
@@ -395,13 +428,13 @@ If the FastAPI backend is unavailable, the frontend displays a user-friendly err
 - [x] User-specific calculation history
 - [x] Long-term carbon tracking
 - [x] Annual carbon trends
-- [ ] Deployment
+- [x] Deployment
 
 ## 🎯 Project Goal
 
-Carbon Compass is designed to demonstrate a complete full-stack workflow using React, REST APIs, FastAPI, data validation, data persistence, PostgreSQL, SQLAlchemy, AI integration, and data visualization.
+Carbon Compass is designed to demonstrate a complete full-stack workflow using React, REST APIs, FastAPI, data validation, JWT authentication, PostgreSQL, SQLAlchemy, AI integration, data visualization, and cloud deployment.
 
-The project provides a foundation for personalized sustainability insights, user accounts, long-term carbon tracking, and future deployment.
+The project combines persistent user accounts and calculation history with personalized AI-generated sustainability insights and long-term carbon tracking.
 
 ## 📌 Current Status
 
@@ -415,7 +448,11 @@ The application has been refined with improved desktop UI, responsive layouts, m
 
 **Phase 3 — AI: COMPLETE ✅**
 
-Gemini AI has been integrated into the backend to provide personalized carbon reduction recommendations and sustainability insights based on the user's calculated emissions. What-if scenarios are planned for later.
+Gemini AI has been integrated into the backend to provide personalized carbon reduction recommendations and sustainability insights based on the user's calculated emissions.
+
+**Phase 4 — Persistence & Production: COMPLETE ✅**
+
+PostgreSQL persistence, user accounts, authenticated calculation history, long-term carbon tracking, and full-stack deployment have been completed. The application is currently deployed with a React frontend, FastAPI backend, Neon PostgreSQL database, and Gemini AI integration.
 
 ---
 
